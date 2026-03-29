@@ -269,155 +269,145 @@
 </footer>
 
 <script type="module">
-import { animate, onScroll, stagger } from 'https://cdn.jsdelivr.net/npm/animejs/+esm';
+import { animate, stagger, createTimeline } from 'https://cdn.jsdelivr.net/npm/animejs/+esm';
 
-/* ── HEADER SCROLL ── */
+/* ════════════════════════════════════════════════════
+   HEADER
+════════════════════════════════════════════════════ */
 const header = document.getElementById('header');
-window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50), { passive: true });
+window.addEventListener('scroll', () =>
+    header.classList.toggle('scrolled', window.scrollY > 50), { passive: true });
 
-/* ══════════════════════════════════════
-   HERO — cascading entrance, each element
-   uses a different animation style
-══════════════════════════════════════ */
-// Badge: fade + scale pop
-animate('#heroBadge', {
-    opacity: [0, 1], scale: [0.7, 1],
-    duration: 600, delay: 150, easing: 'easeOutBack(2)'
-});
-// Title line 1: slide up fast
-animate('.hero-title .line-1', {
-    opacity: [0, 1], translateY: [60, 0], skewY: [4, 0],
-    duration: 700, delay: 350, easing: 'easeOutExpo'
-});
-// Title line 2: slide up with slight delay
-animate('.hero-title .line-2', {
-    opacity: [0, 1], translateY: [60, 0], skewY: [4, 0],
-    duration: 700, delay: 480, easing: 'easeOutExpo'
-});
-// Make title visible once lines animate
-animate('#heroTitle', { opacity: 1, duration: 1, delay: 340 });
-// Subtitle: fade in from below
-animate('#heroSub', {
-    opacity: [0, 1], translateY: [25, 0],
-    duration: 650, delay: 680, easing: 'easeOutCubic'
-});
-// CTA: scale in with spring
-animate('#heroCta', {
-    opacity: [0, 1], scale: [0.85, 1],
-    duration: 600, delay: 880, easing: 'easeOutBack(1.5)'
-});
-// Stats: stagger each stat number
-animate('.stat', {
-    opacity: [0, 1], translateY: [20, 0],
-    delay: stagger(120, { start: 1100 }),
-    duration: 500, easing: 'easeOutExpo'
-});
-animate('#heroStats', { opacity: 1, duration: 1, delay: 1080 });
-// Scroll indicator: fade in last
-animate('#scrollIndicator', {
-    opacity: [0, 1], translateY: [10, 0],
-    duration: 500, delay: 1500, easing: 'easeOutCubic'
-});
+/* ════════════════════════════════════════════════════
+   HERO — timeline-driven entrance
+   Badge: zoom+fade → Title: clip up line by line →
+   Sub: blur+fade → CTA: scale spring → Stats: flip up
+════════════════════════════════════════════════════ */
+// set initial states via CSS already (opacity:0), drive with anime
+const heroTL = createTimeline({ defaults: { easing: 'easeOutExpo' } });
+heroTL
+  .add('#heroBadge',         { opacity: [0,1], scale: [0.5,1], duration: 500 }, 200)
+  .add('.hero-title .line-1',{ opacity: [0,1], translateY: [80,0], duration: 600 }, 400)
+  .add('.hero-title .line-2',{ opacity: [0,1], translateY: [80,0], duration: 600 }, 520)
+  .add('#heroTitle',         { opacity: 1, duration: 1 }, 390)
+  .add('#heroSub',           { opacity: [0,1], filter: ['blur(12px)','blur(0px)'], duration: 700 }, 750)
+  .add('#heroCta',           { opacity: [0,1], scale: [0.7,1], duration: 550, easing: 'easeOutBack(2)' }, 950)
+  .add('.stat',              { opacity: [0,1], translateY: [30,0], rotateX: ['-60deg','0deg'],
+                               delay: stagger(110), duration: 500 }, 1100)
+  .add('#heroStats',         { opacity: 1, duration: 1 }, 1090)
+  .add('#scrollIndicator',   { opacity: [0,1], duration: 400 }, 1600);
 
-/* ── FLOATING ORBS ── */
-animate('.orb-1', { translateY: [-25, 25], duration: 7000, loop: true, alternate: true, easing: 'easeInOutSine' });
-animate('.orb-2', { translateY: [20, -20], translateX: [-10, 10], duration: 8500, loop: true, alternate: true, easing: 'easeInOutSine' });
-animate('.orb-3', { translateX: [-18, 18], translateY: [-10, 10], duration: 6000, loop: true, alternate: true, easing: 'easeInOutSine' });
+/* ── FLOATING ORBS (infinite) ── */
+animate('.orb-1', { translateY: [-30,30], duration: 7000, loop: true, alternate: true, easing: 'easeInOutSine' });
+animate('.orb-2', { translateX: [-20,20], translateY: [15,-15], duration: 9000, loop: true, alternate: true, easing: 'easeInOutSine' });
+animate('.orb-3', { scale: [0.9,1.1], duration: 5500, loop: true, alternate: true, easing: 'easeInOutSine' });
 
-/* ══════════════════════════════════════
-   SCROLL ANIMATIONS
-══════════════════════════════════════ */
+/* ════════════════════════════════════════════════════
+   INTERSECTION OBSERVER — fires anime.js on enter
+   100% reliable: works on Coolify, CDN, any host
+════════════════════════════════════════════════════ */
+function onEnter(selector, fn, threshold = 0.15) {
+    const els = typeof selector === 'string'
+        ? Array.from(document.querySelectorAll(selector))
+        : [selector];
+    if (!els.length) return;
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                fn(entry.target);
+                io.unobserve(entry.target);
+            }
+        });
+    }, { threshold });
+    els.forEach(el => io.observe(el));
+}
 
-// Products section header
-animate('#productsLabel', {
-    opacity: [0, 1], translateX: [-30, 0],
-    duration: 550, easing: 'easeOutExpo',
-    autoplay: onScroll({ target: '#productsLabel', enter: 'bottom 92%' })
+/* ════════════════════════════════════════════════════
+   PRODUCTS SECTION
+   Header: zoom-in from centre
+   Cards: 3 alternating styles — zoom+rise, flip-in, swing-in
+════════════════════════════════════════════════════ */
+onEnter('#productsLabel', el => {
+    animate(el, { opacity:[0,1], scale:[0.6,1], duration:500, easing:'easeOutBack(2)' });
 });
-animate('#productsTitle', {
-    opacity: [0, 1], translateY: [35, 0],
-    duration: 650, delay: 80, easing: 'easeOutExpo',
-    autoplay: onScroll({ target: '#productsTitle', enter: 'bottom 92%' })
+onEnter('#productsTitle', el => {
+    animate(el, { opacity:[0,1], scale:[0.85,1], translateY:[20,0], duration:600, delay:80, easing:'easeOutExpo' });
 });
-animate('#productsSub', {
-    opacity: [0, 1], translateY: [20, 0],
-    duration: 550, delay: 160, easing: 'easeOutCubic',
-    autoplay: onScroll({ target: '#productsSub', enter: 'bottom 92%' })
+onEnter('#productsSub', el => {
+    animate(el, { opacity:[0,1], translateY:[15,0], duration:500, delay:160, easing:'easeOutCubic' });
 });
 
-// Product cards — each with a different reveal style cycling through 3 types
-const cards = document.querySelectorAll('[data-anime="cardReveal"]');
-const cardStyles = [
-    { translateY: [60, 0], scale: [0.92, 1] },   // slide up + scale
-    { translateX: [-40, 0], rotate: [-3, 0] },    // slide right + tilt
-    { translateY: [40, 0], rotate: [3, 0] },      // slide up + tilt other way
-];
-cards.forEach((card, i) => {
-    animate(card, {
-        opacity: [0, 1],
-        ...cardStyles[i % 3],
-        duration: 600,
-        delay: (i % 3) * 80,
-        easing: 'easeOutExpo',
-        autoplay: onScroll({ target: card, enter: 'bottom 94%' })
+// Cards: each visible group gets staggered with its own style
+const cardEls = Array.from(document.querySelectorAll('[data-anime="cardReveal"]'));
+cardEls.forEach((card, i) => {
+    onEnter(card, el => {
+        const col = i % 3;
+        if (col === 0) {
+            // zoom + rise
+            animate(el, { opacity:[0,1], scale:[0.75,1], translateY:[50,0], duration:600, easing:'easeOutExpo' });
+        } else if (col === 1) {
+            // flip in from bottom (rotateX)
+            animate(el, { opacity:[0,1], scale:[0.85,1], rotateX:['-45deg','0deg'], translateY:[30,0], duration:650, easing:'easeOutBack(1.2)' });
+        } else {
+            // swing in from side
+            animate(el, { opacity:[0,1], scale:[0.8,1], translateX:[40,0], duration:580, easing:'easeOutExpo' });
+        }
+    }, 0.1);
+});
+
+/* ════════════════════════════════════════════════════
+   ABOUT SECTION
+   Left card: zoom+slide from left
+   Right text: zoom+slide from right
+   List items: cascade down with scale
+   Chips: pop in with spring stagger
+════════════════════════════════════════════════════ */
+onEnter('#aboutVisual', el => {
+    animate(el, { opacity:[0,1], scale:[0.82,1], translateX:[-60,0], duration:750, easing:'easeOutExpo' });
+    // chips fire after card appears
+    setTimeout(() => {
+        animate('.feature-chip', {
+            opacity:[0,1], scale:[0.4,1],
+            delay: stagger(70), duration:400, easing:'easeOutBack(2.5)'
+        });
+    }, 300);
+}, 0.1);
+
+onEnter('#aboutText', el => {
+    animate(el, { opacity:[0,1], scale:[0.88,1], translateX:[60,0], duration:750, easing:'easeOutExpo' });
+    setTimeout(() => {
+        animate('.about-list li', {
+            opacity:[0,1], scale:[0.9,1], translateY:[25,0],
+            delay: stagger(100), duration:450, easing:'easeOutExpo'
+        });
+    }, 200);
+}, 0.1);
+
+/* ════════════════════════════════════════════════════
+   CONTACT SECTION
+   Label+Title: blur zoom in
+   Cards: stagger scale+slide
+   Map: zoom in from small
+════════════════════════════════════════════════════ */
+onEnter('#contactLabel', el => {
+    animate(el, { opacity:[0,1], scale:[0.5,1], filter:['blur(8px)','blur(0px)'], duration:500, easing:'easeOutExpo' });
+});
+onEnter('#contactTitle', el => {
+    animate(el, { opacity:[0,1], scale:[0.8,1], filter:['blur(6px)','blur(0px)'], duration:600, delay:100, easing:'easeOutExpo' });
+});
+onEnter('.contact-cards', () => {
+    animate('.contact-card', {
+        opacity:[0,1], scale:[0.85,1], translateX:[-40,0],
+        delay: stagger(140), duration:550, easing:'easeOutExpo'
     });
-});
+}, 0.1);
+onEnter('.map-wrap', el => {
+    animate(el, { opacity:[0,1], scale:[0.7,1], duration:700, easing:'easeOutExpo' });
+}, 0.1);
 
-// About — left panel: clip from left
-animate('#aboutVisual', {
-    opacity: [0, 1], translateX: [-70, 0], scale: [0.96, 1],
-    duration: 800, easing: 'easeOutExpo',
-    autoplay: onScroll({ target: '#aboutVisual', enter: 'bottom 88%' })
-});
-// About — right panel: clip from right
-animate('#aboutText', {
-    opacity: [0, 1], translateX: [70, 0], scale: [0.96, 1],
-    duration: 800, easing: 'easeOutExpo',
-    autoplay: onScroll({ target: '#aboutText', enter: 'bottom 88%' })
-});
-// About list items: stagger slide in
-animate('.about-list li', {
-    opacity: [0, 1], translateX: [50, 0],
-    duration: 500, delay: stagger(100),
-    easing: 'easeOutExpo',
-    autoplay: onScroll({ target: '.about-list', enter: 'bottom 88%' })
-});
-// Feature chips: pop in with spring
-animate('.feature-chip', {
-    opacity: [0, 1], scale: [0.6, 1],
-    duration: 450, delay: stagger(55),
-    easing: 'easeOutBack(2)',
-    autoplay: onScroll({ target: '.about-features', enter: 'bottom 90%' })
-});
-
-// Contact header
-animate('#contactLabel', {
-    opacity: [0, 1], translateX: [-30, 0],
-    duration: 500, easing: 'easeOutExpo',
-    autoplay: onScroll({ target: '#contactLabel', enter: 'bottom 90%' })
-});
-animate('#contactTitle', {
-    opacity: [0, 1], translateY: [30, 0],
-    duration: 600, delay: 80, easing: 'easeOutExpo',
-    autoplay: onScroll({ target: '#contactTitle', enter: 'bottom 90%' })
-});
-// Contact cards: stagger slide from left
-animate('.contact-card', {
-    opacity: [0, 1], translateX: [-50, 0],
-    duration: 550, delay: stagger(130),
-    easing: 'easeOutExpo',
-    autoplay: onScroll({ target: '.contact-cards', enter: 'bottom 90%' })
-});
-// Map: zoom in from below
-animate('.map-wrap', {
-    opacity: [0, 1], translateY: [50, 0], scale: [0.95, 1],
-    duration: 700, easing: 'easeOutExpo',
-    autoplay: onScroll({ target: '.map-wrap', enter: 'bottom 90%' })
-});
-
-/* ══════════════════════════════════════
+/* ════════════════════════════════════════════════════
    CAROUSEL
-══════════════════════════════════════ */
+════════════════════════════════════════════════════ */
 let currentIndex = 0;
 const track = document.getElementById('carouselTrack');
 const items  = document.querySelectorAll('.product-item');
@@ -443,12 +433,8 @@ function buildDots() {
 
 function goTo(idx) {
     currentIndex = idx;
-    const gap = 22;
-    const w = items[0].offsetWidth + gap;
-    animate(track, {
-        translateX: -(currentIndex * ipv * w),
-        duration: 550, easing: 'easeInOutExpo'
-    });
+    const w = items[0].offsetWidth + 22;
+    animate(track, { translateX: -(currentIndex * ipv * w), duration: 600, easing: 'easeInOutExpo' });
     document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === currentIndex));
 }
 
@@ -460,7 +446,6 @@ document.getElementById('nextBtn').onclick = () => {
     const max = Math.ceil(items.length / ipv) - 1;
     goTo(currentIndex >= max ? 0 : currentIndex + 1);
 };
-
 window.addEventListener('resize', () => {
     const n = getIPV();
     if (n !== ipv) { ipv = n; currentIndex = 0; buildDots(); goTo(0); }
@@ -474,18 +459,18 @@ setInterval(() => {
 
 /* ── ADD BUTTON BOUNCE ── */
 document.querySelectorAll('.add-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        animate(btn, { scale: [1, 1.5, 0.9, 1], duration: 450, easing: 'easeOutElastic(1, .4)' });
-    });
+    btn.addEventListener('click', () =>
+        animate(btn, { scale:[1,1.6,0.85,1], duration:500, easing:'easeOutElastic(1,.4)' })
+    );
 });
 
-/* ── NAV LINK ACTIVE STATE ON SCROLL ── */
+/* ── NAV ACTIVE ── */
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
-    navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 130) cur = s.id; });
+    navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
 }, { passive: true });
 </script>
 </body>

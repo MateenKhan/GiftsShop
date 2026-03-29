@@ -423,6 +423,20 @@ footer span {
     background-clip: text; font-weight: 700;
 }
 
+/* ── ANIMATION INITIAL STATES (prevent FOUC before JS runs) ── */
+#heroBadge, #heroTitle, .hero-title .line-1, .hero-title .line-2,
+#heroSub, #heroCta, #heroStats, .stat, #scrollIndicator,
+#productsLabel, #productsTitle, #productsSub,
+[data-anime="cardReveal"],
+#aboutVisual, #aboutText, .about-list li, .feature-chip,
+#contactLabel, #contactTitle, .contact-card, .map-wrap {
+    opacity: 0;
+}
+
+/* perspective for 3D card flips */
+.carousel-wrapper { perspective: 1200px; }
+.product-item { transform-style: preserve-3d; }
+
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
     .product-item { min-width: calc(50% - 11px); }
