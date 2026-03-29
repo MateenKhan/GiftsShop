@@ -473,7 +473,6 @@ footer span {
 #contactLabel, #contactTitle, .contact-card, .map-wrap {
     opacity: 0;
 }
-
 /* perspective for 3D card flips */
 .carousel-wrapper { perspective: 1200px; }
 .product-item { transform-style: preserve-3d; }

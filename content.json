@@ -1,0 +1,93 @@
+{
+  "site": {
+    "title": "VC Gift World — Toys, Games, Watches & Stationery",
+    "logo": "🎁 VC Gift World"
+  },
+  "nav": [
+    { "label": "Home",     "href": "#home" },
+    { "label": "Products", "href": "#products" },
+    { "label": "About",    "href": "#about" },
+    { "label": "Contact",  "href": "#contact" }
+  ],
+  "hero": {
+    "badge": "✨  Premium Gift Store",
+    "title_line1": "Where Every Gift",
+    "title_line2": "Tells a Story",
+    "subtitle": "Board games, teddy bears, premium watches, stationery and unique gifts for every occasion.",
+    "cta_text": "Shop Now",
+    "stats": [
+      { "number": "200+", "label": "Products" },
+      { "number": "5K+",  "label": "Happy Kids" },
+      { "number": "10+",  "label": "Years Open" }
+    ]
+  },
+  "products": {
+    "section_label": "Our Collection",
+    "section_title": "Handpicked",
+    "section_title_highlight": "Favourites",
+    "section_sub": "Games, watches, toys, stationery — something for everyone.",
+    "search_placeholder": "Search products…",
+    "no_results": "No products found. Try a different search!",
+    "categories": [
+      { "key": "all",           "label": "All" },
+      { "key": "games",         "label": "🎲 Games" },
+      { "key": "toys",          "label": "🧸 Toys" },
+      { "key": "stationery",    "label": "✏️ Stationery" },
+      { "key": "watches-men",   "label": "⌚ Men's Watches" },
+      { "key": "watches-women", "label": "💜 Women's Watches" }
+    ],
+    "items": [
+      { "id":1,  "cat":"games",         "name":"Monopoly Classic",       "price":"₹999",  "desc":"Classic property trading game. Build houses and hotels!", "img":"https://images.unsplash.com/photo-1611996575749-79a3a250f948?w=400&h=400&fit=crop&auto=format" },
+      { "id":2,  "cat":"games",         "name":"Ludo King Board",        "price":"₹299",  "desc":"Traditional Ludo for 2–4 players. Colorful and fun!",    "img":"https://images.unsplash.com/photo-1632501641765-e568d28b0015?w=400&h=400&fit=crop&auto=format" },
+      { "id":3,  "cat":"games",         "name":"Chess Board Set",        "price":"₹799",  "desc":"Premium wooden chess set. Develop strategic thinking!",  "img":"https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=400&h=400&fit=crop&auto=format" },
+      { "id":4,  "cat":"games",         "name":"Scrabble Junior",        "price":"₹899",  "desc":"Word-building game for kids. Improve vocabulary!",        "img":"https://images.unsplash.com/photo-1606503153255-59d8b8b82176?w=400&h=400&fit=crop&auto=format" },
+      { "id":5,  "cat":"games",         "name":"Snakes & Ladders",       "price":"₹199",  "desc":"Classic board game. Fun for the entire family!",          "img":"https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=400&h=400&fit=crop&auto=format" },
+      { "id":6,  "cat":"games",         "name":"UNO Card Game",          "price":"₹299",  "desc":"Fast-paced card game for family fun. Easy to learn!",     "img":"https://images.unsplash.com/photo-1593814681464-eef5af2b0628?w=400&h=400&fit=crop&auto=format" },
+      { "id":7,  "cat":"toys",          "name":"Soft Teddy Bear",        "price":"₹599",  "desc":"Adorable plush teddy bear. Super soft cuddle companion!", "img":"https://images.unsplash.com/photo-1559454403-b8fb88521f11?w=400&h=400&fit=crop&auto=format" },
+      { "id":8,  "cat":"toys",          "name":"Unicorn Plush Toy",      "price":"₹699",  "desc":"Magical unicorn with rainbow mane. Kids all-time fave!",  "img":"https://images.unsplash.com/photo-1602526430780-782d6b1783fa?w=400&h=400&fit=crop&auto=format" },
+      { "id":9,  "cat":"toys",          "name":"Baby Doll + Accessories","price":"₹799",  "desc":"Cute baby doll with bottle and clothes. Pretend play!",   "img":"https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=400&fit=crop&auto=format" },
+      { "id":10, "cat":"toys",          "name":"Building Blocks 200+",   "price":"₹1099", "desc":"Colorful building blocks. Develop motor skills!",          "img":"https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=400&fit=crop&auto=format" },
+      { "id":11, "cat":"stationery",    "name":"Crayon Set 24 Colors",   "price":"₹149",  "desc":"Non-toxic wax crayons in vibrant colors. Young artists!", "img":"https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=400&h=400&fit=crop&auto=format" },
+      { "id":12, "cat":"stationery",    "name":"Spiral Notebook Pack",   "price":"₹249",  "desc":"5 colorful spiral notebooks, 200 ruled pages each.",      "img":"https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=400&h=400&fit=crop&auto=format" },
+      { "id":13, "cat":"stationery",    "name":"Sketch Markers 36 Pack", "price":"₹449",  "desc":"Dual-tip markers in assorted colors. Draw and color!",    "img":"https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=400&h=400&fit=crop&auto=format" },
+      { "id":14, "cat":"stationery",    "name":"Pencil Set + Eraser",    "price":"₹99",   "desc":"12 HB pencils with erasers. Smooth writing experience.",  "img":"https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=400&h=400&fit=crop&auto=format" },
+      { "id":15, "cat":"stationery",    "name":"Geometry Box Set",       "price":"₹179",  "desc":"Compass, protractor, rulers. Complete geometry kit.",      "img":"https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&h=400&fit=crop&auto=format" },
+      { "id":16, "cat":"watches-men",   "name":"Titan Edge Slim",        "price":"₹2499", "desc":"Ultra-slim stainless steel case. Minimalist dial for men.","img":"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop&auto=format" },
+      { "id":17, "cat":"watches-men",   "name":"Fastrack Chronograph",   "price":"₹1899", "desc":"Bold chronograph dial. Sports-ready with date window.",   "img":"https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=400&h=400&fit=crop&auto=format" },
+      { "id":18, "cat":"watches-men",   "name":"Casio G-Shock Style",    "price":"₹3299", "desc":"Rugged digital watch. Shock-resistant, water-resistant.", "img":"https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=400&h=400&fit=crop&auto=format" },
+      { "id":19, "cat":"watches-women", "name":"Titan Raga Rose Gold",   "price":"₹2999", "desc":"Elegant rose gold bracelet watch. Slim crystal dial.",     "img":"https://images.unsplash.com/photo-1612817288484-6f916006741a?w=400&h=400&fit=crop&auto=format" },
+      { "id":20, "cat":"watches-women", "name":"Fastrack Pastel Dial",   "price":"₹1599", "desc":"Trendy pastel dial with leather strap. Casual chic.",      "img":"https://images.unsplash.com/photo-1594534475808-b18fc33b045e?w=400&h=400&fit=crop&auto=format" },
+      { "id":21, "cat":"watches-women", "name":"Sonata Pearl Bracelet",  "price":"₹2199", "desc":"Pearl-accented bracelet watch. Elegant for every event.",  "img":"https://images.unsplash.com/photo-1617625802912-cde586faf749?w=400&h=400&fit=crop&auto=format" }
+    ]
+  },
+  "about": {
+    "section_label": "Our Story",
+    "section_title": "More Than Just a",
+    "section_title_highlight": "Gift Shop",
+    "section_sub": "We believe every gift should spark joy, curiosity, and lasting memories.",
+    "card_emoji": "🎁",
+    "card_title": "VC Gift World",
+    "card_text": "Your trusted neighbourhood gift store bringing smiles to children and families for over a decade.",
+    "chips": ["🎲 Board Games", "🧸 Plush Toys", "✏️ Stationery", "⌚ Watches", "🧩 Puzzles", "🎁 Gift Sets"],
+    "list": [
+      { "icon": "🏆", "title": "Quality Guaranteed",    "text": "Every product carefully selected for safety and fun." },
+      { "icon": "💝", "title": "Every Occasion",        "text": "Birthdays, festivals, school rewards — we have it all." },
+      { "icon": "🌟", "title": "Trusted by Families",   "text": "Over 5,000 happy customers in our community." }
+    ]
+  },
+  "contact": {
+    "section_label": "Find Us",
+    "section_title": "Come",
+    "section_title_highlight": "Visit Us",
+    "cards": [
+      { "icon": "📍", "label": "LOCATION",    "value": "VC Gift World",           "link": "https://maps.app.goo.gl/K1qtXorcWopQk8Ur8", "link_text": "View on Google Maps →" },
+      { "icon": "📞", "label": "PHONE",       "value": "07207038501",             "link": "tel:07207038501" },
+      { "icon": "⏰", "label": "STORE HOURS", "value": "Mon – Sun | 9AM – 8PM",  "link": null }
+    ],
+    "map_embed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.5!2d78.4!3d17.4!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDI0JzAwLjAiTiA3OMKwMjQnMDAuMCJF!5e0!3m2!1sen!2sin!4v1"
+  },
+  "footer": {
+    "copy": "© 2024 VC Gift World. All rights reserved.",
+    "tagline": "Making memories, one gift at a time 🎁"
+  }
+}

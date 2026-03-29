@@ -1,202 +1,92 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VC Gift World — Children's Toys, Games & Stationery</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VC Gift World</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
 <header id="header">
-    <nav>
-        <div class="container">
-            <h1 class="logo">🎁 VC Gift World</h1>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#products">Products</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+  <nav><div class="container">
+    <h1 class="logo" id="siteLogo"></h1>
+    <ul class="nav-links" id="navLinks"></ul>
+  </div></nav>
 </header>
-
-<!-- ── HERO ── -->
 <section id="home" class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-orb orb-1"></div>
-    <div class="hero-orb orb-2"></div>
-    <div class="hero-orb orb-3"></div>
-    <div class="hero-content">
-        <div class="hero-badge" id="heroBadge">✨ &nbsp; Premium Gift Store</div>
-        <h2 class="hero-title" id="heroTitle">
-            <span class="line-1">Where Every Gift</span>
-            <span class="line-2">Tells a Story</span>
-        </h2>
-        <p class="hero-sub" id="heroSub">
-            Discover our magical collection of children's board games, cuddly teddy bears, stationery, and unique gifts for every occasion.
-        </p>
-        <a href="#products" class="hero-cta" id="heroCta">
-            Shop Now <span class="arrow">→</span>
-        </a>
-        <div class="hero-stats" id="heroStats">
-            <div class="stat"><div class="stat-num">200+</div><div class="stat-label">Products</div></div>
-            <div class="stat"><div class="stat-num">5K+</div><div class="stat-label">Happy Kids</div></div>
-            <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Years Open</div></div>
-        </div>
-    </div>
-    <div class="scroll-indicator" id="scrollIndicator">
-        <div class="scroll-line"></div>
-        <span>Scroll</span>
-    </div>
+  <div class="hero-bg"></div>
+  <div class="hero-orb orb-1"></div><div class="hero-orb orb-2"></div><div class="hero-orb orb-3"></div>
+  <div class="hero-content">
+    <div class="hero-badge" id="heroBadge"></div>
+    <h2 class="hero-title" id="heroTitle">
+      <span class="line-1" id="heroLine1"></span>
+      <span class="line-2" id="heroLine2"></span>
+    </h2>
+    <p class="hero-sub" id="heroSub"></p>
+    <a href="#products" class="hero-cta" id="heroCta"></a>
+    <div class="hero-stats" id="heroStats"></div>
+  </div>
+  <div class="scroll-indicator" id="scrollIndicator"><div class="scroll-line"></div><span>Scroll</span></div>
 </section>
-
-<!-- ── PRODUCTS ── -->
 <section id="products" class="products">
-    <div class="container">
-        <div class="products-header">
-            <div class="section-label" id="productsLabel">Our Collection</div>
-            <h2 class="section-title" id="productsTitle">Handpicked <span>Favourites</span></h2>
-            <p class="section-sub" id="productsSub">Board games, watches, toys, stationery — something for everyone.</p>
-        </div>
-
-        <!-- Search + Filter -->
-        <div class="products-controls">
-            <div class="search-wrap">
-                <span class="search-icon">🔍</span>
-                <input type="text" id="searchInput" class="search-input" placeholder="Search products…" autocomplete="off">
-                <button class="search-clear" id="searchClear" aria-label="Clear">✕</button>
-            </div>
-            <div class="filter-tabs" id="filterTabs">
-                <button class="tab active" data-cat="all">All</button>
-                <button class="tab" data-cat="games">🎲 Games</button>
-                <button class="tab" data-cat="toys">🧸 Toys</button>
-                <button class="tab" data-cat="stationery">✏️ Stationery</button>
-                <button class="tab" data-cat="watches-men">⌚ Men's Watches</button>
-                <button class="tab" data-cat="watches-women">💜 Women's Watches</button>
-            </div>
-        </div>
-
-        <div class="no-results" id="noResults">No products found. Try a different search!</div>
-        <div class="products-grid" id="productsGrid">
-
-<!-- P18 -->
-<div class="product-item" data-anime="cardReveal">
-    <div class="product-image"><svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#1a0a2e"/><rect x="60" y="40" width="80" height="120" fill="#e74c3c" rx="10"/><ellipse cx="100" cy="100" rx="25" ry="35" fill="#f39c12" opacity="0.8"/><text x="100" y="108" text-anchor="middle" font-size="28" font-weight="bold" fill="white" font-family="sans-serif">1</text><rect x="160" y="40" width="80" height="120" fill="#3498db" rx="10"/><ellipse cx="200" cy="100" rx="25" ry="35" fill="#2ecc71" opacity="0.8"/><text x="200" y="108" text-anchor="middle" font-size="28" font-weight="bold" fill="white" font-family="sans-serif">U</text><rect x="80" y="170" width="80" height="120" fill="#2ecc71" rx="10"/><ellipse cx="120" cy="230" rx="25" ry="35" fill="#e74c3c" opacity="0.8"/><text x="120" y="238" text-anchor="middle" font-size="28" font-weight="bold" fill="white" font-family="sans-serif">N</text><rect x="170" y="170" width="80" height="120" fill="#f39c12" rx="10"/><ellipse cx="210" cy="230" rx="25" ry="35" fill="#3498db" opacity="0.8"/><text x="210" y="238" text-anchor="middle" font-size="28" font-weight="bold" fill="white" font-family="sans-serif">O</text></svg></div>
-    <div class="product-info"><h3>UNO Card Game</h3><p>Fast-paced card game for family fun. Easy to learn, exciting to play!</p><div class="product-footer"><span class="price">₹299</span><button class="add-btn">+</button></div></div>
-</div>
-<!-- P19 -->
-<div class="product-item" data-anime="cardReveal">
-    <div class="product-image"><svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#1a0a15"/><rect x="50" y="50" width="140" height="190" fill="#e74c3c" rx="5"/><rect x="60" y="60" width="120" height="170" fill="white" rx="3"/><circle cx="120" cy="110" r="25" fill="#f1c40f" opacity="0.7"/><rect x="75" y="145" width="90" height="8" fill="#3498db" rx="4" opacity="0.6"/><rect x="75" y="160" width="70" height="8" fill="#2ecc71" rx="4" opacity="0.6"/><rect x="75" y="175" width="80" height="8" fill="#e74c3c" rx="4" opacity="0.6"/><rect x="75" y="190" width="60" height="8" fill="#9b59b6" rx="4" opacity="0.6"/><rect x="80" y="70" width="140" height="190" fill="#3498db" rx="5" transform="rotate(5,80,70)"/><rect x="90" y="80" width="120" height="170" fill="white" rx="3" transform="rotate(5,90,80)"/><rect x="100" y="90" width="140" height="190" fill="#2ecc71" rx="5" transform="rotate(10,100,90)"/></svg></div>
-    <div class="product-info"><h3>Coloring Book Bundle</h3><p>Set of 3 coloring books with various themes. Hours of creative fun!</p><div class="product-footer"><span class="price">₹199</span><button class="add-btn">+</button></div></div>
-</div>
-<!-- P20 -->
-<div class="product-item" data-anime="cardReveal">
-    <div class="product-image"><svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0f0f0a"/><g><rect x="40" y="200" width="50" height="50" fill="#e74c3c" rx="4"/><rect x="48" y="188" width="14" height="14" fill="#c0392b" rx="7"/><rect x="78" y="188" width="14" height="14" fill="#c0392b" rx="7"/><rect x="95" y="200" width="50" height="50" fill="#3498db" rx="4"/><rect x="103" y="188" width="14" height="14" fill="#2980b9" rx="7"/><rect x="133" y="188" width="14" height="14" fill="#2980b9" rx="7"/><rect x="150" y="200" width="50" height="50" fill="#2ecc71" rx="4"/><rect x="158" y="188" width="14" height="14" fill="#27ae60" rx="7"/><rect x="188" y="188" width="14" height="14" fill="#27ae60" rx="7"/><rect x="205" y="200" width="50" height="50" fill="#f39c12" rx="4"/><rect x="213" y="188" width="14" height="14" fill="#e67e22" rx="7"/><rect x="243" y="188" width="14" height="14" fill="#e67e22" rx="7"/><rect x="65" y="145" width="50" height="50" fill="#9b59b6" rx="4"/><rect x="73" y="133" width="14" height="14" fill="#8e44ad" rx="7"/><rect x="103" y="133" width="14" height="14" fill="#8e44ad" rx="7"/><rect x="120" y="145" width="50" height="50" fill="#e91e63" rx="4"/><rect x="128" y="133" width="14" height="14" fill="#c2185b" rx="7"/><rect x="158" y="133" width="14" height="14" fill="#c2185b" rx="7"/><rect x="175" y="145" width="50" height="50" fill="#00bcd4" rx="4"/><rect x="183" y="133" width="14" height="14" fill="#0097a7" rx="7"/><rect x="213" y="133" width="14" height="14" fill="#0097a7" rx="7"/><rect x="90" y="90" width="50" height="50" fill="#ff5722" rx="4"/><rect x="98" y="78" width="14" height="14" fill="#e64a19" rx="7"/><rect x="128" y="78" width="14" height="14" fill="#e64a19" rx="7"/><rect x="145" y="90" width="50" height="50" fill="#8bc34a" rx="4"/><rect x="153" y="78" width="14" height="14" fill="#689f38" rx="7"/><rect x="183" y="78" width="14" height="14" fill="#689f38" rx="7"/><rect x="115" y="40" width="50" height="50" fill="#ffc107" rx="4"/><rect x="123" y="28" width="14" height="14" fill="#ffa000" rx="7"/><rect x="153" y="28" width="14" height="14" fill="#ffa000" rx="7"/></g></svg></div>
-    <div class="product-info"><h3>Building Blocks Set</h3><p>200+ colorful building blocks. Develop motor skills and creativity.</p><div class="product-footer"><span class="price">₹1099</span><button class="add-btn">+</button></div></div>
-</div>
-
-                </div><!-- /carousel-track -->
-            </div><!-- /carousel-wrapper -->
-            <div class="carousel-nav">
-                <button class="carousel-btn" id="prevBtn">&#10094;</button>
-                <div class="carousel-dots" id="carouselDots"></div>
-                <button class="carousel-btn" id="nextBtn">&#10095;</button>
-            </div>
-        </div>
+  <div class="container">
+    <div class="products-header">
+      <div class="section-label" id="productsLabel"></div>
+      <h2 class="section-title" id="productsTitle"></h2>
+      <p class="section-sub" id="productsSub"></p>
     </div>
+    <div class="products-controls">
+      <div class="search-wrap">
+        <span class="search-icon">&#128269;</span>
+        <input type="text" id="searchInput" class="search-input" autocomplete="off">
+        <button class="search-clear" id="searchClear">&#10005;</button>
+      </div>
+      <div class="filter-tabs" id="filterTabs"></div>
+    </div>
+    <p class="no-results" id="noResults"></p>
+    <div class="products-grid" id="productsGrid"></div>
+  </div>
 </section>
-""
-
-<!-- ── ABOUT ── -->
 <section id="about" class="about">
-    <div class="container">
-        <div class="about-grid">
-            <div class="about-visual" id="aboutVisual">
-                <div class="about-card">
-                    <span class="about-emoji">🎁</span>
-                    <div class="about-card-title">VC Gift World</div>
-                    <div class="about-card-text">Your trusted neighbourhood gift store bringing smiles to children and families since over a decade.</div>
-                    <div class="about-features">
-                        <div class="feature-chip">🎲 Board Games</div>
-                        <div class="feature-chip">🧸 Plush Toys</div>
-                        <div class="feature-chip">✏️ Stationery</div>
-                        <div class="feature-chip">🎨 Art Supplies</div>
-                        <div class="feature-chip">🧩 Puzzles</div>
-                        <div class="feature-chip">🎁 Gift Sets</div>
-                    </div>
-                </div>
-            </div>
-            <div class="about-text-side" id="aboutText">
-                <div class="section-label">Our Story</div>
-                <h2 class="section-title">More Than Just a <span>Gift Shop</span></h2>
-                <p class="section-sub">We believe every gift should spark joy, curiosity, and lasting memories in a child's heart.</p>
-                <ul class="about-list">
-                    <li>
-                        <span class="icon">🏆</span>
-                        <div><strong>Quality Guaranteed</strong><span>Every product is carefully selected for safety and fun.</span></div>
-                    </li>
-                    <li>
-                        <span class="icon">💝</span>
-                        <div><strong>Perfect for Every Occasion</strong><span>Birthdays, festivals, school rewards — we have it all.</span></div>
-                    </li>
-                    <li>
-                        <span class="icon">🌟</span>
-                        <div><strong>Trusted by Families</strong><span>Over 5,000 happy kids and counting in our community.</span></div>
-                    </li>
-                </ul>
-            </div>
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual" id="aboutVisual">
+        <div class="about-card">
+          <span class="about-emoji" id="aboutEmoji"></span>
+          <div class="about-card-title" id="aboutCardTitle"></div>
+          <div class="about-card-text" id="aboutCardText"></div>
+          <div class="about-features" id="aboutChips"></div>
         </div>
+      </div>
+      <div class="about-text-side" id="aboutText">
+        <div class="section-label" id="aboutLabel"></div>
+        <h2 class="section-title" id="aboutTitle"></h2>
+        <p class="section-sub" id="aboutSub"></p>
+        <ul class="about-list" id="aboutList"></ul>
+      </div>
     </div>
+  </div>
 </section>
-
-<!-- ── CONTACT ── -->
 <section id="contact" class="contact">
-    <div class="container">
-        <div class="contact-header">
-            <div class="section-label" id="contactLabel">Find Us</div>
-            <h2 class="section-title" id="contactTitle">Come <span>Visit Us</span></h2>
-        </div>
-        <div class="contact-grid">
-            <div class="contact-cards">
-                <div class="contact-card" data-anime="slideLeft">
-                    <div class="contact-icon">📍</div>
-                    <div>
-                        <h3>LOCATION</h3>
-                        <p>VC Gift World</p>
-                        <a href="https://maps.app.goo.gl/K1qtXorcWopQk8Ur8" target="_blank" style="font-size:0.82rem;color:#a855f7;font-weight:500;">View on Google Maps →</a>
-                    </div>
-                </div>
-                <div class="contact-card" data-anime="slideLeft">
-                    <div class="contact-icon">📞</div>
-                    <div>
-                        <h3>PHONE</h3>
-                        <a href="tel:07207038501">07207038501</a>
-                    </div>
-                </div>
-                <div class="contact-card" data-anime="slideLeft">
-                    <div class="contact-icon">⏰</div>
-                    <div>
-                        <h3>STORE HOURS</h3>
-                        <p>Mon – Sun &nbsp;|&nbsp; 9:00 AM – 8:00 PM</p>
-                    </div>
-                </div>
-            </div>
-            <div class="map-wrap" data-anime="fadeUp">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.5!2d78.4!3d17.4!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDI0JzAwLjAiTiA3OMKwMjQnMDAuMCJF!5e0!3m2!1sen!2sin!4v1234567890" width="100%" height="360" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
+  <div class="container">
+    <div class="contact-header">
+      <div class="section-label" id="contactLabel"></div>
+      <h2 class="section-title" id="contactTitle"></h2>
     </div>
+    <div class="contact-grid">
+      <div class="contact-cards" id="contactCards"></div>
+      <div class="map-wrap">
+        <iframe id="mapEmbed" style="border:0" width="100%" height="360" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
 </section>
-
-<footer>
-    <div class="container">
-        <p>&copy; 2024 <span>VC Gift World</span>. All rights reserved.</p>
-        <p>Making childhood memories, one gift at a time 🎁</p>
-    </div>
+<footer id="siteFooter">
+  <div class="container">
+    <p id="footerCopy"></p>
+    <p id="footerTagline"></p>
+  </div>
 </footer>
-
 <script type="module" src="app.js"></script>
 </body>
 </html>
