@@ -56,9 +56,9 @@
 <section id="products" class="products">
     <div class="container">
         <div class="products-header">
-            <div class="section-label" data-anime="fadeUp">Our Collection</div>
-            <h2 class="section-title" data-anime="fadeUp">Handpicked <span>Favourites</span></h2>
-            <p class="section-sub" data-anime="fadeUp">From classic board games to cuddly companions — something special for every child.</p>
+            <div class="section-label" id="productsLabel">Our Collection</div>
+            <h2 class="section-title" id="productsTitle">Handpicked <span>Favourites</span></h2>
+            <p class="section-sub" id="productsSub">From classic board games to cuddly companions — something special for every child.</p>
         </div>
         <div class="carousel-container">
             <div class="carousel-wrapper">
@@ -225,8 +225,10 @@
 <!-- ── CONTACT ── -->
 <section id="contact" class="contact">
     <div class="container">
-        <div class="section-label" data-anime="fadeUp">Find Us</div>
-        <h2 class="section-title" data-anime="fadeUp">Come <span>Visit Us</span></h2>
+        <div class="contact-header">
+            <div class="section-label" id="contactLabel">Find Us</div>
+            <h2 class="section-title" id="contactTitle">Come <span>Visit Us</span></h2>
+        </div>
         <div class="contact-grid">
             <div class="contact-cards">
                 <div class="contact-card" data-anime="slideLeft">
@@ -267,96 +269,155 @@
 </footer>
 
 <script type="module">
-import { animate, onScroll, stagger, utils } from 'https://cdn.jsdelivr.net/npm/animejs/+esm';
+import { animate, onScroll, stagger } from 'https://cdn.jsdelivr.net/npm/animejs/+esm';
 
 /* ── HEADER SCROLL ── */
 const header = document.getElementById('header');
-window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 60);
+window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50), { passive: true });
+
+/* ══════════════════════════════════════
+   HERO — cascading entrance, each element
+   uses a different animation style
+══════════════════════════════════════ */
+// Badge: fade + scale pop
+animate('#heroBadge', {
+    opacity: [0, 1], scale: [0.7, 1],
+    duration: 600, delay: 150, easing: 'easeOutBack(2)'
+});
+// Title line 1: slide up fast
+animate('.hero-title .line-1', {
+    opacity: [0, 1], translateY: [60, 0], skewY: [4, 0],
+    duration: 700, delay: 350, easing: 'easeOutExpo'
+});
+// Title line 2: slide up with slight delay
+animate('.hero-title .line-2', {
+    opacity: [0, 1], translateY: [60, 0], skewY: [4, 0],
+    duration: 700, delay: 480, easing: 'easeOutExpo'
+});
+// Make title visible once lines animate
+animate('#heroTitle', { opacity: 1, duration: 1, delay: 340 });
+// Subtitle: fade in from below
+animate('#heroSub', {
+    opacity: [0, 1], translateY: [25, 0],
+    duration: 650, delay: 680, easing: 'easeOutCubic'
+});
+// CTA: scale in with spring
+animate('#heroCta', {
+    opacity: [0, 1], scale: [0.85, 1],
+    duration: 600, delay: 880, easing: 'easeOutBack(1.5)'
+});
+// Stats: stagger each stat number
+animate('.stat', {
+    opacity: [0, 1], translateY: [20, 0],
+    delay: stagger(120, { start: 1100 }),
+    duration: 500, easing: 'easeOutExpo'
+});
+animate('#heroStats', { opacity: 1, duration: 1, delay: 1080 });
+// Scroll indicator: fade in last
+animate('#scrollIndicator', {
+    opacity: [0, 1], translateY: [10, 0],
+    duration: 500, delay: 1500, easing: 'easeOutCubic'
 });
 
-/* ── HERO ENTRANCE ── */
-animate('#heroBadge',      { opacity:[0,1], translateY:[20,0], duration:700, delay:200, easing:'easeOutExpo' });
-animate('#heroTitle',      { opacity:[0,1], translateY:[50,0], duration:900, delay:400, easing:'easeOutExpo' });
-animate('#heroSub',        { opacity:[0,1], translateY:[30,0], duration:800, delay:650, easing:'easeOutExpo' });
-animate('#heroCta',        { opacity:[0,1], translateY:[30,0], duration:700, delay:850, easing:'easeOutExpo' });
-animate('#heroStats',      { opacity:[0,1], translateY:[30,0], duration:700, delay:1050, easing:'easeOutExpo' });
-animate('#scrollIndicator',{ opacity:[0,1], duration:600, delay:1400, easing:'easeOutExpo' });
+/* ── FLOATING ORBS ── */
+animate('.orb-1', { translateY: [-25, 25], duration: 7000, loop: true, alternate: true, easing: 'easeInOutSine' });
+animate('.orb-2', { translateY: [20, -20], translateX: [-10, 10], duration: 8500, loop: true, alternate: true, easing: 'easeInOutSine' });
+animate('.orb-3', { translateX: [-18, 18], translateY: [-10, 10], duration: 6000, loop: true, alternate: true, easing: 'easeInOutSine' });
 
-/* ── ORB FLOAT ── */
-animate('.orb-1', { translateY: [-20, 20], duration: 6000, loop: true, alternate: true, easing: 'easeInOutSine' });
-animate('.orb-2', { translateY: [20, -20], duration: 7000, loop: true, alternate: true, easing: 'easeInOutSine' });
-animate('.orb-3', { translateX: [-15, 15], duration: 5000, loop: true, alternate: true, easing: 'easeInOutSine' });
+/* ══════════════════════════════════════
+   SCROLL ANIMATIONS
+══════════════════════════════════════ */
 
-/* ── SCROLL REVEAL HELPER ── */
-function revealOnScroll(selector, props, delayEach = 0) {
-    const els = document.querySelectorAll(selector);
-    els.forEach((el, i) => {
-        animate(el, {
-            ...props,
-            duration: 800,
-            delay: delayEach ? i * delayEach : 0,
-            easing: 'easeOutExpo',
-            autoplay: onScroll({ target: el, enter: 'bottom 90%' })
-        });
-    });
-}
+// Products section header
+animate('#productsLabel', {
+    opacity: [0, 1], translateX: [-30, 0],
+    duration: 550, easing: 'easeOutExpo',
+    autoplay: onScroll({ target: '#productsLabel', enter: 'bottom 92%' })
+});
+animate('#productsTitle', {
+    opacity: [0, 1], translateY: [35, 0],
+    duration: 650, delay: 80, easing: 'easeOutExpo',
+    autoplay: onScroll({ target: '#productsTitle', enter: 'bottom 92%' })
+});
+animate('#productsSub', {
+    opacity: [0, 1], translateY: [20, 0],
+    duration: 550, delay: 160, easing: 'easeOutCubic',
+    autoplay: onScroll({ target: '#productsSub', enter: 'bottom 92%' })
+});
 
-/* ── SECTION LABELS / TITLES / SUBS ── */
-revealOnScroll('[data-anime="fadeUp"]', { opacity: [0, 1], translateY: [30, 0] }, 80);
-
-/* ── PRODUCT CARDS staggered ── */
+// Product cards — each with a different reveal style cycling through 3 types
 const cards = document.querySelectorAll('[data-anime="cardReveal"]');
+const cardStyles = [
+    { translateY: [60, 0], scale: [0.92, 1] },   // slide up + scale
+    { translateX: [-40, 0], rotate: [-3, 0] },    // slide right + tilt
+    { translateY: [40, 0], rotate: [3, 0] },      // slide up + tilt other way
+];
 cards.forEach((card, i) => {
     animate(card, {
-        opacity:    [0, 1],
-        translateY: [50, 0],
-        scale:      [0.95, 1],
-        duration:   700,
-        delay:      (i % 3) * 100,
-        easing:     'easeOutExpo',
-        autoplay:   onScroll({ target: card, enter: 'bottom 92%' })
+        opacity: [0, 1],
+        ...cardStyles[i % 3],
+        duration: 600,
+        delay: (i % 3) * 80,
+        easing: 'easeOutExpo',
+        autoplay: onScroll({ target: card, enter: 'bottom 94%' })
     });
 });
 
-/* ── ABOUT SIDE PANELS ── */
+// About — left panel: clip from left
 animate('#aboutVisual', {
-    opacity: [0, 1], translateX: [-60, 0], duration: 900, easing: 'easeOutExpo',
-    autoplay: onScroll({ target: '#aboutVisual', enter: 'bottom 85%' })
+    opacity: [0, 1], translateX: [-70, 0], scale: [0.96, 1],
+    duration: 800, easing: 'easeOutExpo',
+    autoplay: onScroll({ target: '#aboutVisual', enter: 'bottom 88%' })
 });
+// About — right panel: clip from right
 animate('#aboutText', {
-    opacity: [0, 1], translateX: [60, 0], duration: 900, easing: 'easeOutExpo',
-    autoplay: onScroll({ target: '#aboutText', enter: 'bottom 85%' })
+    opacity: [0, 1], translateX: [70, 0], scale: [0.96, 1],
+    duration: 800, easing: 'easeOutExpo',
+    autoplay: onScroll({ target: '#aboutText', enter: 'bottom 88%' })
 });
+// About list items: stagger slide in
 animate('.about-list li', {
-    opacity: [0, 1], translateX: [40, 0], duration: 600,
-    delay: stagger(120),
+    opacity: [0, 1], translateX: [50, 0],
+    duration: 500, delay: stagger(100),
     easing: 'easeOutExpo',
-    autoplay: onScroll({ target: '.about-list', enter: 'bottom 85%' })
+    autoplay: onScroll({ target: '.about-list', enter: 'bottom 88%' })
 });
-
-/* ── CONTACT CARDS ── */
-animate('[data-anime="slideLeft"]', {
-    opacity: [0, 1], translateX: [-40, 0], duration: 700,
-    delay: stagger(150),
-    easing: 'easeOutExpo',
-    autoplay: onScroll({ target: '.contact-cards', enter: 'bottom 88%' })
-});
-animate('[data-anime="fadeUp"]', {
-    opacity: [0, 1], translateY: [40, 0], duration: 700,
-    easing: 'easeOutExpo',
-    autoplay: onScroll({ target: '.map-wrap', enter: 'bottom 88%' })
-});
-
-/* ── FEATURE CHIPS stagger ── */
+// Feature chips: pop in with spring
 animate('.feature-chip', {
-    opacity: [0, 1], scale: [0.8, 1], duration: 500,
-    delay: stagger(60),
-    easing: 'easeOutBack',
-    autoplay: onScroll({ target: '.about-features', enter: 'bottom 88%' })
+    opacity: [0, 1], scale: [0.6, 1],
+    duration: 450, delay: stagger(55),
+    easing: 'easeOutBack(2)',
+    autoplay: onScroll({ target: '.about-features', enter: 'bottom 90%' })
 });
 
-/* ── CAROUSEL ── */
+// Contact header
+animate('#contactLabel', {
+    opacity: [0, 1], translateX: [-30, 0],
+    duration: 500, easing: 'easeOutExpo',
+    autoplay: onScroll({ target: '#contactLabel', enter: 'bottom 90%' })
+});
+animate('#contactTitle', {
+    opacity: [0, 1], translateY: [30, 0],
+    duration: 600, delay: 80, easing: 'easeOutExpo',
+    autoplay: onScroll({ target: '#contactTitle', enter: 'bottom 90%' })
+});
+// Contact cards: stagger slide from left
+animate('.contact-card', {
+    opacity: [0, 1], translateX: [-50, 0],
+    duration: 550, delay: stagger(130),
+    easing: 'easeOutExpo',
+    autoplay: onScroll({ target: '.contact-cards', enter: 'bottom 90%' })
+});
+// Map: zoom in from below
+animate('.map-wrap', {
+    opacity: [0, 1], translateY: [50, 0], scale: [0.95, 1],
+    duration: 700, easing: 'easeOutExpo',
+    autoplay: onScroll({ target: '.map-wrap', enter: 'bottom 90%' })
+});
+
+/* ══════════════════════════════════════
+   CAROUSEL
+══════════════════════════════════════ */
 let currentIndex = 0;
 const track = document.getElementById('carouselTrack');
 const items  = document.querySelectorAll('.product-item');
@@ -382,11 +443,11 @@ function buildDots() {
 
 function goTo(idx) {
     currentIndex = idx;
-    const w = items[0].offsetWidth + 24;
+    const gap = 22;
+    const w = items[0].offsetWidth + gap;
     animate(track, {
         translateX: -(currentIndex * ipv * w),
-        duration: 600,
-        easing: 'easeInOutExpo'
+        duration: 550, easing: 'easeInOutExpo'
     });
     document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === currentIndex));
 }
@@ -403,7 +464,7 @@ document.getElementById('nextBtn').onclick = () => {
 window.addEventListener('resize', () => {
     const n = getIPV();
     if (n !== ipv) { ipv = n; currentIndex = 0; buildDots(); goTo(0); }
-});
+}, { passive: true });
 
 buildDots();
 setInterval(() => {
@@ -414,9 +475,18 @@ setInterval(() => {
 /* ── ADD BUTTON BOUNCE ── */
 document.querySelectorAll('.add-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-        animate(btn, { scale: [1, 1.4, 1], duration: 400, easing: 'easeOutElastic(1,.5)' });
+        animate(btn, { scale: [1, 1.5, 0.9, 1], duration: 450, easing: 'easeOutElastic(1, .4)' });
     });
 });
+
+/* ── NAV LINK ACTIVE STATE ON SCROLL ── */
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+    navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+}, { passive: true });
 </script>
 </body>
 </html>
